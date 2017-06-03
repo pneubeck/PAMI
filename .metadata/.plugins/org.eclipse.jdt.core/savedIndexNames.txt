@@ -1,0 +1,2 @@
+INDEX VERSION 1.129+C:\Users\Pascal\Documents\PAMI\.metadata\.plugins\org.eclipse.jdt.core
+3199816721.index

@@ -1,6 +1,9 @@
 
 package common;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -50,6 +53,20 @@ public class Result {
 
     public Object getExpectedReleaseMonth() {
         return expectedReleaseMonth;
+    }
+    
+    public Date getExpectedReleaseDate() {
+    	Date date;
+		try {
+			if(expectedReleaseDay != null && expectedReleaseMonth != null && expectedReleaseYear != null){
+				date = new SimpleDateFormat("yyyyMMdd").parse((String)expectedReleaseYear+expectedReleaseMonth+expectedReleaseDay);
+		    	return date;
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
     }
 
     public void setExpectedReleaseMonth(Object expectedReleaseMonth) {

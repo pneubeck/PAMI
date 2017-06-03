@@ -19,6 +19,7 @@ public class RequestFactorio {
 
 	private static RequestFactorio _instance = null;
 	private static ArrayList<Result> workingSet = new ArrayList<Result>();
+	private static boolean allFetched = false;
 	protected static final String _apiKey = "1605648d3fb03dafb57cff18686b2af5eec4bf0f";
 	protected static final String _baseURL = "https://www.giantbomb.com/api/";
 
@@ -33,7 +34,7 @@ public class RequestFactorio {
 		return _instance;
 	}
 
-	public void GetGamesByPlatform(String platform){
+	public ArrayList<Result> GetGamesByPlatform(String platform){
 		//		String thisMoment = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mmX")
 		//				.withZone(ZoneOffset.UTC)
 		//				.format(Instant.now());
@@ -64,8 +65,10 @@ public class RequestFactorio {
 		 * 146	ps4
 		 * 157	switch
 		 */
-		System.out.println(queryString);
+		workingSet = new ArrayList<Result>();
+		//System.out.println(queryString);
 		try {
+			while(allFetched == false){
 			URL url = new URL(queryString);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0");
@@ -82,12 +85,17 @@ public class RequestFactorio {
 					//					System.out.println(gson.toJson(s));
 					workingSet.add(gson.fromJson(gson.toJson(s), Result.class)/*megadumm*/);
 				}
-				System.err.println(workingSet);
+				System.err.println(offset);
+				offset= offset+100;
+				if(jsonResponse.getNumberOfTotalResults() == workingSet.size()) allFetched = true;
 			}
+			}
+				return workingSet;
 
 		} catch (Exception e) {
 			// TODO logging
 			log.warning(e.getMessage());
-		} 
+		}
+		return null;
 	}
 }
