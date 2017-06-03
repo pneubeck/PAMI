@@ -56,7 +56,7 @@ public class RequestFactorio {
 		int offset = 0;
 		//		String urlString = "https://www.giantbomb.com/api/search/?api_key=" + _apiKey + "&format=json&limit=100&query=\"littlebigplanet"
 		//				+ "\"&resources=game";
-		String queryString = _baseURL + "games/" + "?api_key=" + _apiKey + "&format=json" + "&field_list="+fieldList+"&filter="+filter+"&offset="+offset;//+"&sort="+sort ; 
+		//String queryString = _baseURL + "games/" + "?api_key=" + _apiKey + "&format=json" + "&field_list="+fieldList+"&filter="+filter+"&offset="+offset;//+"&sort="+sort ; 
 		/*
 		 * 94 	pc
 		 * 129	psvita
@@ -69,6 +69,7 @@ public class RequestFactorio {
 		//System.out.println(queryString);
 		try {
 			while(allFetched == false){
+				String queryString = _baseURL + "games/" + "?api_key=" + _apiKey + "&format=json" + "&field_list="+fieldList+"&filter="+filter+"&offset="+offset;//+"&sort="+sort ;
 			URL url = new URL(queryString);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0");
@@ -87,7 +88,7 @@ public class RequestFactorio {
 				}
 				System.err.println(offset);
 				offset= offset+100;
-				if(jsonResponse.getNumberOfTotalResults() == workingSet.size()) allFetched = true;
+				if(jsonResponse.getNumberOfTotalResults() <= workingSet.size()) allFetched = true;
 			}
 			}
 				return workingSet;
