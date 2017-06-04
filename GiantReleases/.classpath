@@ -2,7 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="gson-2.8.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Pascal/Documents/PAMI/GiantReleases/ical4j-2.0.0.zip"/>
+	<classpathentry exported="true" kind="lib" path="gson-2.8.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Pascal/Documents/PAMI/GiantReleases/ical4j-2.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Pascal/Documents/PAMI/GiantReleases/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Pascal/Documents/PAMI/GiantReleases/slf4j-api-2.0.99.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Pascal/Documents/PAMI/GiantReleases/slf4j-simple-1.6.99.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Pascal/Documents/PAMI/GiantReleases/common-lang3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
