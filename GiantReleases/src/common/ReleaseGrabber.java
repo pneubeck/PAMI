@@ -12,6 +12,7 @@ public class ReleaseGrabber {
 		ArrayList<Result> results = _requestFactory.GetGamesByPlatform("PS4");
 		if(results == null) return;
 		results = SortResultsExpectedRelease(results);//Sorted List containing all Games with any future release date
+		CreateIcal(results);
 	}
 	
 	private static ArrayList<Result> SortResultsExpectedRelease(ArrayList<Result> results){
@@ -30,5 +31,10 @@ public class ReleaseGrabber {
 		System.out.println(futureGames.size());
 		//-----------------------------------------------------------
 		return futureGames;
+	}
+	
+	//Creates and returns an Ical from the given resultList
+	private static void CreateIcal(ArrayList<Result> results){
+		
 	}
 }
