@@ -55,17 +55,37 @@ public class Result {
 		return expectedReleaseMonth;
 	}
 
+	//Returns the complete release date for the game if present
 	public Date getExpectedReleaseDate() {
 		Date date;
+		//Creating doubles from date properties
+		Double dYear = null;
+		Double dMonth = null;
+		Double dDay = null;
+		if(expectedReleaseYear != null){
+			dYear = new Double(expectedReleaseYear.toString());
+		}
+		if(expectedReleaseMonth != null){
+		    dMonth = new Double(expectedReleaseMonth.toString());
+		}
+		if(expectedReleaseDay != null){
+			dDay = new Double(expectedReleaseDay.toString());
+		}
+		//Only Release	-Month	-Year 	present
 		if (expectedReleaseDay == null && expectedReleaseMonth != null && expectedReleaseYear != null) {
 			try {
+				//Creating ints to lose the unnecessary .x
+				int year = dYear.intValue();
+				int month = dMonth.intValue();
+				//parsing and returning the date
 				date = new SimpleDateFormat("yyyyMM")
-						.parse(expectedReleaseYear.toString() + expectedReleaseMonth.toString());
+						.parse(Integer.toString(year) + Integer.toString(month));
 				return date;
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			//Only Release	-Month	-Day	-Year 	present
 		} else if (expectedReleaseDay != null && expectedReleaseMonth != null && expectedReleaseYear != null) {
 			try {
 				date = new SimpleDateFormat("yyyyMMdd").parse(expectedReleaseYear.toString()
@@ -74,6 +94,7 @@ public class Result {
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 			}
+			//Only Release	-Month	-Year 	present
 		}else if(expectedReleaseDay == null && expectedReleaseMonth == null && expectedReleaseYear != null){
 			try {
 				date = new SimpleDateFormat("yyyy").parse(expectedReleaseYear.toString());

@@ -1,9 +1,7 @@
 package common;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ReleaseGrabber {
 	
@@ -13,7 +11,7 @@ public class ReleaseGrabber {
 		if(_requestFactory == null) _requestFactory = RequestFactorio.GetInstance();
 		ArrayList<Result> results = _requestFactory.GetGamesByPlatform("PS4");
 		if(results == null) return;
-		SortResultsExpectedRelease(results);
+		results = SortResultsExpectedRelease(results);//Sorted List containing all Games with any future release date
 	}
 	
 	private static ArrayList<Result> SortResultsExpectedRelease(ArrayList<Result> results){
@@ -24,11 +22,13 @@ public class ReleaseGrabber {
 			futureGames.add(curRes);
 		}
 		//Sort remaining games by releaseDate
-		//futureGames.sort((p1, p2) -> p1.getExpectedReleaseDate().compareTo(p2.getExpectedReleaseDate()));
+		futureGames.sort((p1, p2) -> p1.getExpectedReleaseDate().compareTo(p2.getExpectedReleaseDate()));
+		//Debugging shit--------------------------------------------
 		for(Result curRes : futureGames){
-			System.out.println(curRes.getName());
+			System.out.println(curRes.getName() + " " + curRes.getExpectedReleaseDate().toString());
 		}
 		System.out.println(futureGames.size());
+		//-----------------------------------------------------------
 		return futureGames;
 	}
 }
